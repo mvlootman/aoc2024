@@ -41,7 +41,10 @@ pub fn solve_day_01a(input: String) {
 
   let total_distance =
     list.zip(left_nums, right_nums)
-    |> list.fold(0, fn(acc, pair) { acc + int.absolute_value(pair.0 - pair.1) })
+    |> list.fold(0, fn(acc, pair) {
+      let #(left, right) = pair
+      acc + int.absolute_value(left - right)
+    })
 
   io.println("Day 1 part 1:" <> total_distance |> int.to_string)
 }
