@@ -53,8 +53,8 @@ pub fn solve_day_01b(input: String) {
   let #(left_nums, right_nums) = get_sorted_lists(input)
 
   let similarity =
-    list.fold(left_nums, 0, fn(acc, n) {
-      acc + n * list.count(right_nums, fn(x) { x == n })
+    list.fold(left_nums, 0, fn(acc, left) {
+      acc + left * list.count(right_nums, fn(right) { right == left })
     })
 
   io.println("Day 1 part 2:" <> similarity |> int.to_string)
