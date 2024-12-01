@@ -6,20 +6,16 @@ import gleam/result
 import gleam/string
 
 fn get_sorted_lists(input) {
-  let pairs =
+  let #(list_left, list_right) =
     input
     |> string.split("\n")
     |> list.map(extract_numbers)
+    |> list.unzip
 
-  let left_nums =
-    list.map(pairs, fn(pair) { pair.0 })
-    |> list.sort(by: int.compare)
+  let sorted_list_left = list_left |> list.sort(by: int.compare)
+  let sorted_list_right = list_right |> list.sort(by: int.compare)
 
-  let right_nums =
-    list.map(pairs, fn(pair) { pair.1 })
-    |> list.sort(by: int.compare)
-
-  #(left_nums, right_nums)
+  #(sorted_list_left, sorted_list_right)
 }
 
 fn extract_numbers(line: String) -> #(Int, Int) {
