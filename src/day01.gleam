@@ -32,7 +32,7 @@ fn extract_numbers(line: String) -> #(Int, Int) {
   #(left_num, right_num)
 }
 
-pub fn solve_day_01a(input: String) {
+pub fn solve_day_part1(input: String) {
   let #(left_nums, right_nums) = get_sorted_lists(input)
 
   let total_distance =
@@ -45,7 +45,7 @@ pub fn solve_day_01a(input: String) {
   io.println("Day 1 part 1:" <> total_distance |> int.to_string)
 }
 
-pub fn solve_day_01b(input: String) {
+pub fn solve_day_part2(input: String) {
   let #(left_nums, right_nums) = get_sorted_lists(input)
 
   let similarity =
