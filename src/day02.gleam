@@ -1,8 +1,6 @@
 import gleam/int
 import gleam/io
 import gleam/list
-import gleam/regexp
-import gleam/result
 import gleam/string
 
 pub fn solve_day_part1(input: String) {
@@ -67,13 +65,9 @@ fn is_safe_report(numbers: List(Int)) -> Bool {
 }
 
 fn extract_numbers(line: String) -> List(Int) {
-  let assert Ok(expr) = regexp.from_string("([0-9]+)+")
-
-  let matches = regexp.scan(expr, line)
-  matches
+  string.split(line, on: " ")
   |> list.map(fn(s) {
-    s.content
-    |> int.parse
-    |> result.unwrap(0)
+    let assert Ok(num) = int.parse(s)
+    num
   })
 }
