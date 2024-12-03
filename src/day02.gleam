@@ -1,24 +1,17 @@
 import gleam/int
-import gleam/io
 import gleam/list
 import gleam/string
 
-pub fn solve_day_part1(input: String) {
-  let num_safe_reports =
-    parse_input(input)
-    |> list.map(is_safe_report)
-    |> list.count(fn(safe) { safe })
-
-  io.println("Day 2 part 1:" <> int.to_string(num_safe_reports))
+pub fn solve_day_part1(input: String) -> Int {
+  parse_input(input)
+  |> list.map(is_safe_report)
+  |> list.count(fn(safe) { safe })
 }
 
 pub fn solve_day_part2(input: String) {
-  let num_safe_reports =
-    parse_input(input)
-    |> list.filter(filter_safe_report)
-    |> list.length
-
-  io.println("Day 2 part 2:" <> int.to_string(num_safe_reports))
+  parse_input(input)
+  |> list.filter(filter_safe_report)
+  |> list.length
 }
 
 fn parse_input(input) {

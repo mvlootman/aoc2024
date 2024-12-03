@@ -1,5 +1,4 @@
 import gleam/int
-import gleam/io
 import gleam/list
 import gleam/regexp
 import gleam/result
@@ -42,7 +41,7 @@ pub fn solve_day_part1(input: String) {
       acc + int.absolute_value(left - right)
     })
 
-  io.println("Day 1 part 1:" <> total_distance |> int.to_string)
+  total_distance
 }
 
 pub fn solve_day_part2(input: String) {
@@ -53,5 +52,5 @@ pub fn solve_day_part2(input: String) {
       acc + left * list.count(right_nums, fn(right) { right == left })
     })
 
-  io.println("Day 1 part 2:" <> similarity |> int.to_string)
+  similarity
 }
