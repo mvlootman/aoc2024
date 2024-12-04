@@ -1,11 +1,11 @@
 import gleam/io
 
-pub fn solve_day_part1(input: String) {
+pub fn solve_day_part1(input: String) -> Int {
   io.println("input:" <> input)
-  io.println("Day N part 1:" <> "TODO")
+  0
 }
 
-pub fn solve_day_part2(input: String) {
+pub fn solve_day_part2(input: String) -> Int {
   io.println("input:" <> input)
-  io.println("Day N part 2:" <> "TODO")
+  0
 }
