@@ -76,17 +76,25 @@ fn get_part2_shapes() {
 }
 
 fn get_coords_dict(input) -> dict.Dict(#(Int, Int), String) {
-  input
-  |> string.split("\n")
-  |> list.index_fold([], fn(acc, item, index) {
-    let line_coords =
-      list.index_fold(string.split(item, ""), [], fn(acc2, item2, index2) {
-        [#(#(index2, index), item2), ..acc2]
-      })
-    [line_coords, ..acc]
-  })
-  |> list.flatten
-  |> dict.from_list
+  // input
+  // |> string.split("\n")
+  // |> list.index_fold([], fn(acc, item, index) {
+  //   let line_coords =
+  //     list.index_fold(string.split(item, ""), [], fn(acc2, item2, index2) {
+  //       [#(#(index2, index), item2), ..acc2]
+  //     })
+  //   [line_coords, ..acc]
+  // })
+  // |> list.flatten
+  // |> dict.from_list
+  
+  
+  use coords, line, line_idx <- list.index_fold(string.split(input, "\n"), dict.new())
+  use coords, char, col_idx <- list.index_fold(string.split(line, ""), coords)
+  
+  dict.insert(coords, #(col_idx, line_idx), char)
+  
+  
 }
 
 fn get_letters(location, coords, shape) -> String {

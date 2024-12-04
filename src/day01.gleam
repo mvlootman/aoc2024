@@ -1,4 +1,5 @@
 import gleam/int
+import gleam/io
 import gleam/list
 import gleam/regexp
 import gleam/result
@@ -32,6 +33,7 @@ fn extract_numbers(line: String) -> #(Int, Int) {
 }
 
 pub fn solve_day_part1(input: String) {
+  io.println(input)
   let #(left_nums, right_nums) = get_sorted_lists(input)
 
   let total_distance =
