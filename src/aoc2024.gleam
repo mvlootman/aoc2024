@@ -20,8 +20,7 @@ fn run_day04() {
   let p1 = day04.solve_day_part1(input)
   let p2 = day04.solve_day_part2(input)
 
-  io.println("Day 4 part 1:" <> int.to_string(p1))
-  io.println("Day 4 part 2:" <> int.to_string(p2))
+  report(4, p1, p2)
 }
 
 fn run_day03() {
@@ -29,8 +28,7 @@ fn run_day03() {
   let p1 = day03.solve_day_part1(input)
   let p2 = day03.solve_day_part2(input)
 
-  io.println("Day 3 part 1:" <> int.to_string(p1))
-  io.println("Day 3 part 2:" <> int.to_string(p2))
+  report(3, p1, p2)
 }
 
 fn run_day02() {
