@@ -10,9 +10,9 @@ pub fn main() {
   io.println("Advent of code 2024!")
 
   run_day04()
-  // run_day03()
-  // run_day02()
-  // run_day01()
+  run_day03()
+  run_day02()
+  run_day01()
 }
 
 fn run_day04() {

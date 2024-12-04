@@ -1,10 +1,54 @@
 import gleam/dict
-import gleam/io
 import gleam/list
 import gleam/result
 import gleam/string
 
-fn get_shapes() {
+pub fn solve_day_part1(input: String) -> Int {
+  let coords = get_coords_dict(input)
+
+  // find potential start positions
+  let x_loc_list = get_start_pos(coords, "X")
+  
+  x_loc_list
+  |> dict.keys
+  |> list.fold(0, fn(acc, x_pos) {
+    let xmas_count =
+      list.map(get_part1_shapes(), fn(shape) {
+        get_letters(x_pos, coords, shape)
+      })
+      |> list.count(fn(word) { word == "MAS" })
+
+    acc + xmas_count
+  })
+}
+
+pub fn solve_day_part2(input: String) -> Int {
+  let coords = get_coords_dict(input)
+
+  // find potential start positions
+  let a_loc_list = get_start_pos(coords, "A")
+
+  a_loc_list
+  |> dict.keys
+  |> list.fold(0, fn(acc, x_pos) {
+    let xmas_count =
+      list.map(get_part2_shapes(), fn(shape) {
+        get_letters(x_pos, coords, shape)
+      })
+      |> list.count(fn(word) {
+        list.contains(["MSMS", "SMSM", "MSSM", "SMMS"], word)
+      })
+
+    acc + xmas_count
+  })
+}
+
+fn get_start_pos(coords, letter) {
+  coords
+  |> dict.filter(fn(_k, v) { v == letter })
+}
+
+fn get_part1_shapes() {
   let right = [#(1, 0), #(2, 0), #(3, 0)]
   let left = [#(-1, 0), #(-2, 0), #(-3, 0)]
   let down = [#(0, 1), #(0, 2), #(0, 3)]
@@ -26,35 +70,23 @@ fn get_shapes() {
   ]
 }
 
-pub fn solve_day_part1(input: String) -> Int {
-  let coords =
-    input
-    |> string.split("\n")
-    |> list.index_fold([], fn(acc, item, index) {
-      let line_coords =
-        list.index_fold(string.split(item, ""), [], fn(acc2, item2, index2) {
-          [#(#(index2, index), item2), ..acc2]
-        })
-      [line_coords, ..acc]
-    })
-    |> list.flatten
-    |> dict.from_list
+fn get_part2_shapes() {
+  // x-wise
+  [[#(-1, -1), #(1, 1), #(-1, 1), #(1, -1)]]
+}
 
-  // find potential start positions
-  let x_pos_list =
-    coords
-    |> dict.filter(fn(_k, v) { v == "X" })
-
-  x_pos_list
-  |> dict.keys
-  |> list.map(fn(x) { io.debug(x) })
-  |> list.fold(0, fn(acc, x_pos) {
-    let xmas_count =
-      list.map(get_shapes(), fn(shape) { get_letters(x_pos, coords, shape) })
-      |> list.count(fn(word) { word == "MAS" })
-
-    acc + xmas_count
+fn get_coords_dict(input) -> dict.Dict(#(Int, Int), String) {
+  input
+  |> string.split("\n")
+  |> list.index_fold([], fn(acc, item, index) {
+    let line_coords =
+      list.index_fold(string.split(item, ""), [], fn(acc2, item2, index2) {
+        [#(#(index2, index), item2), ..acc2]
+      })
+    [line_coords, ..acc]
   })
+  |> list.flatten
+  |> dict.from_list
 }
 
 fn get_letters(location, coords, shape) -> String {
@@ -69,9 +101,4 @@ fn get_letters(location, coords, shape) -> String {
     |> string.join("")
 
   found_letters
-}
-
-pub fn solve_day_part2(input: String) -> Int {
-  io.println("input:" <> input)
-  0
 }
