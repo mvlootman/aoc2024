@@ -8,7 +8,7 @@ pub fn solve_day_part1(input: String) -> Int {
 
   // find potential start positions
   let x_loc_list = get_start_pos(coords, "X")
-  
+
   x_loc_list
   |> dict.keys
   |> list.fold(0, fn(acc, x_pos) {
@@ -87,14 +87,12 @@ fn get_coords_dict(input) -> dict.Dict(#(Int, Int), String) {
   // })
   // |> list.flatten
   // |> dict.from_list
-  
-  
-  use coords, line, line_idx <- list.index_fold(string.split(input, "\n"), dict.new())
+
+  let lines = string.split(input, "\n")
+  use coords, line, line_idx <- list.index_fold(lines, dict.new())
   use coords, char, col_idx <- list.index_fold(string.split(line, ""), coords)
-  
+
   dict.insert(coords, #(col_idx, line_idx), char)
-  
-  
 }
 
 fn get_letters(location, coords, shape) -> String {
