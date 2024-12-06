@@ -44,7 +44,8 @@ pub fn solve_day_part2(input: String) -> Int {
     |> list.map(fn(update) { #(check_valid(rules, update), update) })
 
   let invalid_items = list.filter(result, fn(x) { !pair.first(x) })
-  invalid_items  |> list.map(fn(x) {
+  invalid_items
+  |> list.map(fn(x) {
     let #(_, update) = x
 
     let sort_by_rules = fn(a: String, b: String) -> order.Order {
@@ -54,7 +55,7 @@ pub fn solve_day_part2(input: String) -> Int {
         False -> order.Lt
       }
     }
-    
+
     list.sort(update, by: sort_by_rules)
   })
   |> get_middle_sum
