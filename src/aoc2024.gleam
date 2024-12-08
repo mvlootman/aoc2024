@@ -5,6 +5,7 @@ import day03
 import day04
 import day05
 import day06
+import day07
 import gleam/int
 import gleam/io
 import gleam/result
@@ -26,6 +27,7 @@ pub fn main() {
         4 -> run_day04(day, input)
         5 -> run_day05(day, input)
         6 -> run_day06(day, input)
+        7 -> run_day07(day, input)
         _ -> io.println("not completed yet!")
       }
     }
@@ -33,6 +35,12 @@ pub fn main() {
   }
 }
 
+fn run_day07(day, input) {
+  let p1 = day07.solve_day_part1(input)
+  let p2 = day07.solve_day_part2(input)
+
+  report(day, p1, p2)
+}
 fn run_day06(day, input) {
   let p1 = day06.solve_day_part1(input)
   let p2 = -1
